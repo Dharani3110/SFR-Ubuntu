@@ -6,7 +6,7 @@ import os
 import configparser
 
 config = configparser.ConfigParser()
-config.read('Dependencies\FramesCount_config.ini')
+config.read('Dependencies/FramesCount_config.ini')
 required_frames = config.getint("Frames",'count')
 
 # "dist_folder' is the destination path for the folder creation.
@@ -51,7 +51,7 @@ def acquire_frames(video_filename, folder_name):
     first_digit = 0
     second_digit = 0
 
-    cap = cv2.VideoCapture(videos_path+'\\'+video_filename)
+    cap = cv2.VideoCapture(videos_path+'/'+video_filename)
     frameCount = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     while (cap.isOpened()):
 
@@ -62,7 +62,7 @@ def acquire_frames(video_filename, folder_name):
             if (count % int(frameCount / required_frames) == 0) and (frame_number < required_frames):
 
                 # save frame as JPG file
-                cv2.imwrite(os.path.join(dist_folder + "\\" + folder_name,folder_name + "{0}{1}.jpg".format(first_digit, second_digit)), frame)
+                cv2.imwrite(os.path.join(dist_folder + "/" + folder_name,folder_name + "{0}{1}.jpg".format(first_digit, second_digit)), frame)
                 #print(first_digit,second_digit)
                 frame_number += 1
                 num = frame_number

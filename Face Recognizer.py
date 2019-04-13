@@ -17,20 +17,20 @@ import configparser
 
 
 # Load the Knn model
-knn = joblib.load('Dependencies\KNN_classifier_model.sav')
+knn = joblib.load('Dependencies/KNN_classifier_model.sav')
 
 # Load the encodings for train images
-data = pickle.loads(open('Dependencies\Encodings', 'rb').read())
+data = pickle.loads(open('Dependencies/Encodings', 'rb').read())
 print("\nNumber of encodings loaded:  ", len(data))
 
 # Store face detector model, shape predictor model and face recognition model as individual variables.
 detector = dlib.get_frontal_face_detector()
-sp = dlib.shape_predictor('Dependencies\shape_predictor_5_face_landmarks.dat')
-face_recognition_model = dlib.face_recognition_model_v1('Dependencies\dlib_face_recognition_resnet_model_v1.dat')
+sp = dlib.shape_predictor('Dependencies/shape_predictor_5_face_landmarks.dat')
+face_recognition_model = dlib.face_recognition_model_v1('Dependencies/dlib_face_recognition_resnet_model_v1.dat')
 
 # Tweak the min_distance parameter to get minimised false recognition
 config = configparser.ConfigParser()
-config.read('Dependencies\config.ini')
+config.read('Dependencies/config.ini')
 min_distance = config.getfloat( "Threshold_initialization" , 'min_distance')
 print( "Initialized threshold: " , min_distance)
 

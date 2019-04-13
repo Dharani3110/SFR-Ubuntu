@@ -16,8 +16,8 @@ import sklearn.neighbors.typedefs
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.externals import joblib
 
-predictor_path = 'Dependencies\shape_predictor_5_face_landmarks.dat'
-face_rec_model_path = 'Dependencies\dlib_face_recognition_resnet_model_v1.dat'
+predictor_path = 'Dependencies/shape_predictor_5_face_landmarks.dat'
+face_rec_model_path = 'Dependencies/dlib_face_recognition_resnet_model_v1.dat'
 train_images_path = "Train images"
 
 # Load all the models - a detector to find the faces, a shape predictor
@@ -36,7 +36,7 @@ def list_to_csv(data):
     # sorting the encoding according to alphabetical order.
     data.sort(key=lambda x: x[0])
     names_list = []
-    with open('dependencies\Encodings_csv.csv', 'w') as csvfile:
+    with open('Dependencies/Encodings_csv.csv', 'w') as csvfile:
         writer = csv.writer(csvfile, dialect='excel')
         for encoding in data:
             # converting the 128-d encoding to string
@@ -55,7 +55,7 @@ def store_KNN_model():
     :return: Returns knn_classifier_model.sav file with model loaded in it.
     """
     # read the csv file containing the encodings
-    df = pd.read_csv('Dependencies\Encodings_csv.csv', header=None)
+    df = pd.read_csv('Dependencies/Encodings_csv.csv', header=None)
     # separate the encodings from the csv file
     encodings = df.drop(df.columns[0], axis=1)
     # separate the class name i.e name of person from the csv file
@@ -64,7 +64,7 @@ def store_KNN_model():
     knn = KNeighborsClassifier(n_neighbors=5)
     # Train the model
     knn.fit(encodings, names)
-    filename = 'Dependencies\KNN_classifier_model.sav'
+    filename = 'Dependencies/KNN_classifier_model.sav'
     # Store the model for later use
     joblib.dump(knn, filename)
     print("\nKNN Model trained and stored....\n")
@@ -91,7 +91,7 @@ def create_encodings():
         img = read_image(image)
         #split the path of the image
         (img_folder, ext) = os.path.splitext(image)
-        (main_fldr , fldr_name, img_name )= img_folder.split('\\')
+        (main_fldr , fldr_name, img_name )= img_folder.split('/')
 
         # Ask the detector to find the bounding boxes of each face. The 1 in the
         # second argument indicates that we should up-sample the image 1 time. This
@@ -110,7 +110,7 @@ def create_encodings():
     # convert the encodings into csv file
     list_to_csv(data)
     print("\nCompleted encoding...")
-    with open('dependencies\Encodings', 'wb') as fp:
+    with open('Dependencies/Encodings', 'wb') as fp:
         fp.write(pickle.dumps(data))
     store_KNN_model()
 
