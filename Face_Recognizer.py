@@ -111,6 +111,32 @@ def sharpen(image):
     sharpened = cv2.filter2D(image, -1, kernel_sharpening)
     return sharpened
 
+
+def resize_image(image, image_dimension):
+    """
+    This function resizes the image according to the dimension we provide
+    :param image: It is the image which needs to be resized
+    :param image_dimension: It is tuple containing image dimension to which the original image to be resized
+    :return: It returns the resized image
+    """
+    image = cv2.resize(image, image_dimension)
+    return image
+
+
+def video_write(frame_array):
+    """
+
+    :param frame_array: It is a list containing frames from the camera feed
+    :return: It returns none
+    """
+    print(len(frame_array))
+    fourcc = cv2.VideoWriter_fourcc(*"DIVX")
+    writer = cv2.VideoWriter('final_video5.avi', fourcc, 13, (frame_array[0].shape[1], frame_array[0].shape[0]), True)
+    for frame in frame_array:
+        writer.write(frame)
+    writer.release()
+
+
 def face_recognizer():
     """
     This function detects and recognises face fetched through web cam feed.
@@ -118,29 +144,39 @@ def face_recognizer():
     """
     # Initializes a variable for Video Capture
     cap = cv2.VideoCapture(0)
+    frame_array = []
     while True:
-        ret, image = cap.read()
+        ret, frame = cap.read()
+        (frame_height, frame_width, channels) = frame.shape
         if ret:
-            frame = sharpen(image)
-            faces = detector(frame, 1)
+            # frame = sharpen(image)
+            img = resize_image(frame, (224, 224))
+            # Get the image dimensions
+            (img_height, img_width, img_channels) = img.shape
+            faces = detector(img, 1)
             if len(faces) != 0:
-                for face in faces:
+                for face, d in enumerate(faces):
 
                     # Get the locations of facial features like eyes, nose for using it to create encodings
-                    shape = sp(frame, face)
+                    shape = sp(img, d)
+
 
                     # Get the coordinates of bounding box enclosing the face.
-                    left = face.left()
-                    top = face.top()
-                    right = face.right()
-                    bottom = face.bottom()
+                    left = d.left()
+                    top = d.top()
+                    right = d.right()
+                    bottom = d.bottom()
 
-                    # Draw bounding boxes for the faces detected
-                    cv2.rectangle(image, (left, top),(right, bottom), (0, 255, 0), 2)
+                    # Converting the coordinates to match 480x640 resolution since we are resizing img to 224x224
+                    cal_left = int(left * frame_width / img_width)
+                    cal_top = int(top * frame_height / img_height)
+                    cal_right = int(right * frame_width / img_width)
+                    cal_bottom = int(bottom * frame_height / img_height)
+                    cv2.rectangle(frame, (cal_left, cal_top), (cal_right, cal_bottom), (0, 255, 0), 2)
 
                     # Calculate encodings of the face detected
                     #start_encode = time.time()
-                    face_descriptor = list(face_recognition_model.compute_face_descriptor(frame, shape))
+                    face_descriptor = list(face_recognition_model.compute_face_descriptor(img, shape))
                     #print("Time taken to encode each face = "+str((time.time()-start_encode) * 1000)+" ms")
 
                     face_encoding = pd.DataFrame([face_descriptor])
@@ -154,14 +190,16 @@ def face_recognizer():
                     person_name = database_list[0][0]
 
                     # Draw the bounding box and write name on top of the face.
-                    image = draw_rectangle(image, (left, top), (right, bottom), frame_rect_color, False)
-                    image = draw_rectangle(image, (left, top - 30), (right, top), frame_rect_color, True)
-                    image = write_text(image, person_name, (left + 6, top - 6), frame_text_color)
+                    frame = draw_rectangle(frame, (cal_left, cal_top), (cal_right, cal_bottom), frame_rect_color, False)
+                    frame = draw_rectangle(frame, (cal_left, cal_top - 30), (cal_right, cal_top), frame_rect_color, True)
+                    frame = write_text(frame, person_name, (cal_left + 6, cal_top - 6), frame_text_color)
 
-
-            cv2.imshow('Frame: Press q to quit the frame', image)
+            frame_array.append(frame)
+            cv2.imshow('Frame: Press q to quit the frame', frame)
             # Break the loop when 'q' is pressed
             if cv2.waitKey(25) & 0xff == ord('q'):
+                video_write(frame_arraywq
+                            )
                 break
         else:
             break
