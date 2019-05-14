@@ -2,12 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="73ac3d3c-8dee-4bd9-927f-8e6709aee5e3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Face_Recognizer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/SFR-Ubuntu.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/final_video5.avi" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dependencies/Encodings" beforeDir="false" afterPath="$PROJECT_DIR$/Dependencies/Encodings" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dependencies/Encodings_csv.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Dependencies/Encodings_csv.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dependencies/KNN_classifier_model.sav" beforeDir="false" afterPath="$PROJECT_DIR$/Dependencies/KNN_classifier_model.sav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Face Encoder.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Face Encoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Face_Encoder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Face Recognizer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Face_Recognizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Face_Recognizer.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,21 +24,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Face_Encoder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-766" />
+            <state relative-caret-position="345">
+              <caret line="34" column="75" lean-forward="true" selection-start-line="34" selection-start-column="75" selection-end-line="34" selection-end-column="75" />
+            </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Face_Recognizer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="794">
-              <caret line="200" column="39" selection-start-line="200" selection-start-column="39" selection-end-line="200" selection-end-column="39" />
-              <folding>
-                <element signature="e#168#187#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="210">
+              <caret line="14" column="33" lean-forward="true" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -60,8 +66,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Face Encoder.py" />
-        <option value="$PROJECT_DIR$/Face_Encoder.py" />
         <option value="$PROJECT_DIR$/Face_Recognizer.py" />
+        <option value="$PROJECT_DIR$/Face_Encoder.py" />
       </list>
     </option>
   </component>
@@ -76,6 +82,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -87,10 +94,10 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
@@ -124,7 +131,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1985" y="-4" width="1855" height="1084" extended-state="6" />
+    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
@@ -156,18 +163,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Face_Encoder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-766" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Face_Recognizer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="794">
-          <caret line="200" column="39" selection-start-line="200" selection-start-column="39" selection-end-line="200" selection-end-column="39" />
-          <folding>
-            <element signature="e#168#187#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="210">
+          <caret line="14" column="33" lean-forward="true" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Face_Encoder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="34" column="75" lean-forward="true" selection-start-line="34" selection-start-column="75" selection-end-line="34" selection-end-column="75" />
         </state>
       </provider>
     </entry>

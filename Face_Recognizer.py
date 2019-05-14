@@ -14,7 +14,7 @@ import time
 import distutils
 import sklearn.neighbors.typedefs
 import configparser
-
+import screeninfo
 
 # Load the Knn model
 knn = joblib.load('Dependencies/KNN_classifier_model.sav')
@@ -143,6 +143,7 @@ def face_recognizer():
     :return:It displays the image obtained from camera with bounding and text if faces are detected.
     """
     # Initializes a variable for Video Capture
+    screen_detail = screeninfo.get_monitors()[0]
     cap = cv2.VideoCapture(0)
     frame_array = []
     while True:
@@ -190,16 +191,26 @@ def face_recognizer():
                     person_name = database_list[0][0]
 
                     # Draw the bounding box and write name on top of the face.
+
                     frame = draw_rectangle(frame, (cal_left, cal_top), (cal_right, cal_bottom), frame_rect_color, False)
                     frame = draw_rectangle(frame, (cal_left, cal_top - 30), (cal_right, cal_top), frame_rect_color, True)
                     frame = write_text(frame, person_name, (cal_left + 6, cal_top - 6), frame_text_color)
 
             frame_array.append(frame)
             cv2.imshow('Frame: Press q to quit the frame', frame)
+
+
+            window_name = 'Results of Recognition: Press q to quit the window'
+            # Results are displayed in full screen
+            cv2.namedWindow(window_name, cv2.WND_PROP_FULLSCREEN)
+            cv2.moveWindow(window_name, screen_detail.x - 1, screen_detail.y - 1)
+            cv2.setWindowProperty(window_name, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+            cv2.imshow(window_name, image)
+
+
             # Break the loop when 'q' is pressed
             if cv2.waitKey(25) & 0xff == ord('q'):
-                video_write(frame_arraywq
-                            )
+                video_write(frame_array)
                 break
         else:
             break
