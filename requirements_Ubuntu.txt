@@ -51,7 +51,7 @@ mock==2.0.0
 munch==2.3.2
 networkx==2.2
 nms==0.1.6
-numpy==1.16.2
+numpy==1.22.0
 opencv-python==3.4.4.19
 osmnx==0.9
 pandas==0.24.1
